@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Portfolio Admin — Control Room &amp; CMS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body class="admin-page">
+  <div class="grain"></div>
+  <div class="admin-ambient admin-ambient-one"></div>
+  <div class="admin-ambient admin-ambient-two"></div>
+
+  <!-- TOPBAR -->
+  <header class="admin-topbar">
+    <a class="brand" href="./">
+      <span class="brand-mark">&lt;ND&gt;</span>
+      <div class="brand-text">
+        <span class="brand-name">Portfolio Control Room</span>
+        <span class="brand-tagline">Admin &amp; Content Management</span>
+      </div>
+    </a>
+    <div class="admin-topbar-meta">
+      <span><i></i> Local Active Workspace</span>
+      <a class="button button-small button-outline" href="./" target="_blank">Buka Tampilan Publik ↗</a>
+    </div>
+  </header>
+
+  <!-- MAIN ADMIN LAYOUT -->
+  <main class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-label">CMS CONTROL ROOM</div>
+      <h1>Kelola<br /><span>Karya Anda.</span></h1>
+      <p>Atur seluruh konten portofolio: profil, keahlian teknis, arsip sertifikat resmi, proyek unggulan, dan label
+        tampilan dashboard.</p>
+
+      <div class="admin-sidebar-status">
+        <div class="status-dot">
+          <i></i> <span>Live Sync dengan Dashboard</span>
+        </div>
+        <small>Perubahan tersimpan otomatis di browser ini saja.</small>
+      </div>
+
+      <!-- WORKFLOW GUIDE -->
+      <div class="admin-workflow-guide">
+        <div class="workflow-guide-title">📋 Cara Simpan Permanen</div>
+        <ol class="workflow-steps-list">
+          <li>
+            <span class="step-num">01</span>
+            <div>
+              <strong>Edit &amp; Save</strong>
+              <small>Ubah konten di tab yang diinginkan, lalu tekan <em>Save changes ✓</em>.</small>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">02</span>
+            <div>
+              <strong>Export File</strong>
+              <small>Tekan tombol <em>Export portfolio-data.js ↓</em> di footer untuk mengunduh file terbaru.</small>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">03</span>
+            <div>
+              <strong>Replace File</strong>
+              <small>Ganti (replace) file <code>portfolio-data.js</code> di folder proyek kamu dengan file yang baru
+                diunduh.</small>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">04</span>
+            <div>
+              <strong>Refresh Dashboard</strong>
+              <small>Buka atau reload <a href="index.html" target="_blank">halaman portofolio</a> — perubahan langsung
+                tampil.</small>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <a href="index.html" class="admin-back-link">← Lihat Dashboard Publik</a>
+    </aside>
+
+    <!-- WORKSPACE -->
+    <section class="admin-workspace">
+      <div class="admin-workspace-head">
+        <div>
+          <p class="kicker">Pengaturan Terpusat</p>
+          <h2>Dashboard <span>Editor.</span></h2>
+        </div>
+        <div class="admin-workspace-code">/admin / cms / v2.2</div>
+      </div>
+
+      <!-- TABS -->
+      <div class="editor-tabs" role="tablist">
+        <button class="editor-tab is-active" data-tab="profile">Profile</button>
+        <button class="editor-tab" data-tab="skills">Skills</button>
+        <button class="editor-tab" data-tab="certificates">Certificates</button>
+        <button class="editor-tab" data-tab="projects">Projects</button>
+        <button class="editor-tab" data-tab="labels">Labels &amp; Teks UI</button>
+        <button class="editor-tab" data-tab="content">Copywriting</button>
+        <button class="editor-tab" data-tab="contact">Contact</button>
+      </div>
+
+      <!-- FORM -->
+      <form id="editorForm" class="editor-form" novalidate>
+
+        <!-- ================================================================
+             01 / PROFILE IDENTITY
+             ================================================================ -->
+        <div class="editor-panel is-active" data-panel="profile">
+          <div class="admin-panel-intro">
+            <span class="panel-number">01</span>
+            <div>
+              <h3>Identitas Profil &amp; Akademik</h3>
+              <p>Informasi utama yang tampil pada Bento Hero dan bagian About di halaman dashboard.</p>
+            </div>
+          </div>
+
+          <label class="profile-upload">
+            <input name="profilePhoto" type="file" accept="image/*" />
+            <span class="upload-photo-preview" id="profilePhotoPreview"><span>+</span></span>
+            <span>
+              <strong>Ganti Foto Profil</strong>
+              <small id="profilePhotoName">Preview lokal sementara. Simpan foto ke folder assets/profile lalu isi path
+                di bawah.</small>
+            </span>
+            <span class="file-plus">+</span>
+          </label>
+
+          <label>Path Foto di GitHub Pages
+            <input name="photoPath" type="text" placeholder="assets/profile/foto-profile.png" />
+            <small class="field-help">Path relatif foto portrait di repositori GitHub.</small>
+          </label>
+
+          <div class="field-grid">
+            <label>Nama Lengkap<input name="name" type="text" /></label>
+            <label>Role / Headline Utama<input name="role" type="text"
+                placeholder="Web Developer · Data Analyst · System Analyst" /></label>
+            <label>Universitas<input name="university" type="text" placeholder="Universitas Gunadarma" /></label>
+            <label>IPK / GPA<input name="gpa" type="text" placeholder="3.53 / 4.00" /></label>
+            <label>Tanggal Lahir<input name="birthdate" type="text" placeholder="02 / 06 / 2004" /></label>
+            <label>Domisili<input name="domicile" type="text" placeholder="Indonesia" /></label>
+            <label>Alamat Email<input name="email" type="email" /></label>
+            <label>Nomor WhatsApp &amp; Telepon<input name="phone" type="tel" placeholder="+6282125060232" /></label>
+            <label>Lokasi Singkat<input name="location" type="text" placeholder="Indonesia" /></label>
+            <label>Username Instagram<input name="instagram" type="text" placeholder="@nevan.dzmrr" /></label>
+          </div>
+
+          <label>Bio Singkat (Hero &amp; About)
+            <textarea name="bio" rows="4"></textarea>
+          </label>
+
+          <div class="field-grid">
+            <label>Tautan Profil GitHub<input name="github" type="url" placeholder="https://github.com/..." /></label>
+            <label>Tautan Profil LinkedIn<input name="linkedin" type="url"
+                placeholder="https://www.linkedin.com/in/nevandzmrr/" /></label>
+          </div>
+        </div>
+
+        <!-- ================================================================
+             02 / SKILL ARCHITECTURE
+             ================================================================ -->
+        <div class="editor-panel" data-panel="skills">
+          <div class="admin-panel-intro">
+            <span class="panel-number">02</span>
+            <div>
+              <h3>Kategori &amp; Modul Keahlian</h3>
+              <p>Kelola kategori kemampuan teknis dan modul skill yang tampil pada Tech Matrix di dashboard.</p>
+            </div>
+          </div>
+
+          <!-- Category Builder -->
+          <div class="skill-admin-section">
+            <div class="skill-admin-section-head">
+              <div>
+                <span class="field-caption">01 / Category Builder</span>
+                <h4>Kategori Keahlian</h4>
+              </div>
+              <span class="admin-mini-label">CRUD Kategori</span>
+            </div>
+            <div class="skill-category-builder">
+              <label>Nama Kategori
+                <input name="categoryName" type="text" placeholder="Contoh: Software Development" />
+              </label>
+              <label>Emoji Kategori
+                <input name="categoryEmoji" type="text" value="💻" maxlength="4" />
+              </label>
+              <button class="button button-dark add-item" type="button" data-add-category>Tambah Kategori
+                <span>+</span></button>
+            </div>
+          </div>
+
+          <!-- Skill Builder -->
+          <div class="skill-admin-section">
+            <div class="skill-admin-section-head">
+              <div>
+                <span class="field-caption">02 / Skill Builder</span>
+                <h4>Tambah / Edit Keahlian</h4>
+              </div>
+              <span class="admin-mini-label">Kemahiran Fleksibel</span>
+            </div>
+            <div class="skill-builder-fields">
+              <label>Nama Skill
+                <input name="skillName" type="text" placeholder="Contoh: Laravel / Python / MySQL" />
+              </label>
+              <label>Pilih Kategori
+                <select name="skillCategory"></select>
+              </label>
+              <input name="skillEmoji" type="hidden" value="⚡" />
+              <div class="emoji-field">
+                <span class="field-caption">Pilih Ikon Emoji</span>
+                <div class="emoji-picker" id="emojiPicker">
+                  <button type="button" class="emoji-choice is-selected" data-emoji="⚡">⚡</button>
+                  <button type="button" class="emoji-choice" data-emoji="💻">💻</button>
+                  <button type="button" class="emoji-choice" data-emoji="🐘">🐘</button>
+                  <button type="button" class="emoji-choice" data-emoji="🐍">🐍</button>
+                  <button type="button" class="emoji-choice" data-emoji="🛢️">🛢️</button>
+                  <button type="button" class="emoji-choice" data-emoji="📈">📈</button>
+                  <button type="button" class="emoji-choice" data-emoji="🎨">🎨</button>
+                  <button type="button" class="emoji-choice" data-emoji="🎯">🎯</button>
+                  <button type="button" class="emoji-choice" data-emoji="🌐">🌐</button>
+                  <button type="button" class="emoji-choice" data-emoji="📑">📑</button>
+                </div>
+              </div>
+            </div>
+            <button class="button button-dark add-item" type="button" data-add-skill>Tambahkan Skill
+              <span>+</span></button>
+          </div>
+
+          <div class="editor-items category-editor-list" id="skillEditorItems"></div>
+        </div>
+
+        <!-- ================================================================
+             03 / CERTIFICATES
+             ================================================================ -->
+        <div class="editor-panel" data-panel="certificates">
+          <div class="admin-panel-intro">
+            <span class="panel-number">03</span>
+            <div>
+              <h3>Arsip Sertifikasi Resmi</h3>
+              <p>Kelola 12 sertifikat resmi dari Universitas Gunadarma dan BNSP. Sertifikat otomatis diurutkan dari
+                tahun terbaru.</p>
+            </div>
+          </div>
+
+          <!-- Edit Mode Active Indicator -->
+          <div class="admin-edit-banner" id="certEditBanner" style="display:none;">
+            <div>
+              <span class="badge-live">MODE EDIT AKTIF</span>
+              <span style="font-size:13px;color:#0f172a;margin-left:8px;">Sedang mengedit sertifikat: <strong
+                  id="certEditingTitle"></strong></span>
+            </div>
+            <button type="button" class="button button-small button-outline" id="cancelCertEditBtn">Batal Edit
+              ✕</button>
+          </div>
+
+          <div class="field-grid">
+            <label>Judul Sertifikat
+              <input name="certificateTitle" type="text" placeholder="Contoh: Oracle for Intermediate" />
+            </label>
+            <label>Penyelenggara / Issuer
+              <input name="certificateIssuer" type="text" placeholder="Contoh: Universitas Gunadarma, BNSP" />
+            </label>
+            <label>Tahun Kelulusan
+              <input name="certificateYear" type="text" placeholder="2026" />
+              <small class="field-help">Digunakan untuk urutan kronologis.</small>
+            </label>
+            <label>Tag / Label Singkat
+              <input name="certificateTag" type="text" placeholder="Contoh: Database SQL, Data & BI" />
+            </label>
+          </div>
+
+          <div class="field-grid">
+            <label>Kategori Filter Dashboard
+              <select name="certificateCategory">
+                <option value="database">Database &amp; SQL</option>
+                <option value="web">Pemrograman &amp; Web</option>
+                <option value="data">Data Analytics &amp; BI</option>
+                <option value="logic">Logika &amp; Penalaran</option>
+                <option value="network">Jaringan &amp; Lainnya</option>
+              </select>
+              <small class="field-help">Menentukan tombol tab filter sertifikat di halaman depan.</small>
+            </label>
+            <label>Path Asset PDF di GitHub Pages
+              <input name="certificateAssetPath" type="text" placeholder="assets/certificate/nama-file.pdf" />
+              <small class="field-help">Contoh: assets/certificate/ORACLE FOR INTERMEDIATE.pdf</small>
+            </label>
+          </div>
+
+          <label>Deskripsi Materi &amp; Kompetensi yang Diperoleh
+            <textarea name="certificateDescription" rows="3"
+              placeholder="Ceritakan materi yang dipelajari atau pencapaian yang diverifikasi oleh sertifikat ini..."></textarea>
+          </label>
+
+          <label class="file-drop">
+            <input name="certificateFile" type="file" accept="application/pdf" />
+            <span class="file-icon">PDF</span>
+            <span>
+              <strong>Upload file PDF untuk preview lokal</strong>
+              <small id="certificateFileName">Untuk GitHub Pages, pastikan file PDF ada di folder assets/certificate/
+                dan isi path di atas.</small>
+            </span>
+            <span class="file-plus">+</span>
+          </label>
+
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:28px;">
+            <button class="button button-dark add-item" type="button" data-add-certificate
+              style="margin-bottom:0;">Tambahkan certificate <span>+</span></button>
+            <button class="button button-outline" type="button" id="cancelCertEditBtnBottom"
+              style="display:none;min-height:48px;">Batal Edit ✕</button>
+          </div>
+
+          <div class="skill-admin-section-head" style="margin-top:20px;">
+            <div>
+              <span class="field-caption">Daftar Sertifikat Terdaftar</span>
+              <h4 style="font-size:18px;">Arsip Sertifikasi Resmi</h4>
+            </div>
+            <span class="admin-mini-label">Diurutkan dari Tahun Terbaru</span>
+          </div>
+
+          <div class="editor-items" id="certificateEditorItems"></div>
+        </div>
+
+        <!-- ================================================================
+             04 / PROJECTS
+             ================================================================ -->
+        <div class="editor-panel" data-panel="projects">
+          <div class="admin-panel-intro">
+            <span class="panel-number">04</span>
+            <div>
+              <h3>Portofolio Proyek Terpilih (Karya Nyata)</h3>
+              <p>Kelola proyek yang tampil di dashboard. Anda dapat melihat, menambah, mengedit, dan menghapus proyek
+                lengkap dengan label peran, tahun, tech stack, dan gambar 16:9.</p>
+            </div>
+          </div>
+
+          <!-- Edit Mode Active Indicator -->
+          <div class="admin-edit-banner" id="projectEditBanner" style="display:none;">
+            <div>
+              <span class="badge-live">MODE EDIT PROYEK</span>
+              <span style="font-size:13px;color:#0f172a;margin-left:8px;">Sedang mengedit: <strong
+                  id="projectEditingTitle"></strong></span>
+            </div>
+            <button type="button" class="button button-small button-outline" id="cancelProjectEditBtn">Batal Edit
+              ✕</button>
+          </div>
+
+          <div class="field-grid">
+            <label>Nama Project
+              <input name="projectTitle" type="text" placeholder="Contoh: Sistem Informasi Manajemen Bank Sampah" />
+            </label>
+            <label>Kategori / Label Peran
+              <input name="projectCategory" type="text"
+                placeholder="Contoh: Web Application · Fullstack & System Analysis" required />
+              <small class="field-help">Muncul sebagai label utama di atas judul proyek.</small>
+            </label>
+            <label>Tahun Pengerjaan
+              <input name="projectYear" type="text" placeholder="2026" />
+              <small class="field-help">Digunakan untuk pengurutan kronologis dari tahun terbaru.</small>
+            </label>
+            <label>Tech Stack
+              <input name="projectTechStack" type="text" placeholder="Contoh: PHP · MySQL · JavaScript · Bootstrap" />
+              <small class="field-help">Daftar teknologi yang digunakan pada proyek ini.</small>
+            </label>
+          </div>
+
+          <label>Tautan Proyek / Demo URL (Opsional)
+            <input name="projectLink" type="text" placeholder="https://github.com/... atau https://demo-project.com" />
+            <small class="field-help">Jika diisi, tombol kunjungi proyek akan aktif. Jika kosong, tombol akan berstatus
+              Studi Kasus.</small>
+          </label>
+
+          <label>Poin Fitur Utama / Highlights (Satu baris per poin)
+            <textarea name="projectHighlights" rows="3"
+              placeholder="Pencatatan setoran sampah otomatis dengan kalkulasi saldo tabungan real-time&#10;Dashboard Admin & Nasabah untuk transparansi saldo kas&#10;Modul verifikasi penarikan saldo dan cetak tanda setoran fisik"></textarea>
+            <small class="field-help">Tiap baris akan ditampilkan sebagai poin fitur dengan ikon bintang di kartu
+              proyek.</small>
+          </label>
+
+          <label>Deskripsi Lengkap Proyek
+            <textarea name="projectDescription" rows="4"
+              placeholder="Jelaskan latar belakang, permasalahan yang diatasi, proses analisis sistem, dan teknologi yang digunakan..."></textarea>
+          </label>
+
+          <label>Path Asset Gambar di GitHub Pages (Satu baris per gambar, rasio 16:9)
+            <textarea name="projectAssetPaths" rows="3"
+              placeholder="assets/projects/banksampah/dashboardadmin.JPG&#10;assets/projects/banksampah/dashboard.JPG&#10;assets/projects/banksampah/setoransampah.JPG"></textarea>
+            <small class="field-help">Gunakan path relatif folder assets/projects/ agar gambar tampil di GitHub
+              Pages.</small>
+          </label>
+
+          <label class="file-drop">
+            <input name="projectImages" type="file" accept="image/*" multiple />
+            <span class="file-icon image-file">IMG</span>
+            <span>
+              <strong>Preview gambar lokal sementara (Dapat memilih beberapa file)</strong>
+              <small id="projectFileName">Untuk GitHub Pages, simpan file di assets/projects lalu isi textarea path di
+                atas.</small>
+            </span>
+            <span class="file-plus">+</span>
+          </label>
+
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:28px;">
+            <button class="button button-dark add-item" type="button" data-add-project
+              style="margin-bottom:0;">Tambahkan project <span>+</span></button>
+            <button class="button button-outline" type="button" id="cancelProjectEditBtnBottom"
+              style="display:none;min-height:48px;">Batal Edit ✕</button>
+          </div>
+
+          <div class="skill-admin-section-head" style="margin-top:20px;">
+            <div>
+              <span class="field-caption">Daftar Karya Aktif (CRUD)</span>
+              <h4 style="font-size:18px;">Proyek yang Ditampilkan di Dashboard</h4>
+            </div>
+            <span class="admin-mini-label">Diurutkan dari Tahun Terbaru · Rasio 16:9</span>
+          </div>
+
+          <div class="editor-items" id="projectEditorItems"></div>
+        </div>
+
+        <!-- ================================================================
+             05 / LABELS & TEKS UI (DEDICATED TAB)
+             ================================================================ -->
+        <div class="editor-panel" data-panel="labels">
+          <div class="admin-panel-intro">
+            <span class="panel-number">05</span>
+            <div>
+              <h3>Label &amp; Teks UI Dashboard</h3>
+              <p>Kelola seluruh label kartu proyek, judul section, kicker, dan tombol navigasi agar selaras dengan
+                tampilan dashboard.</p>
+            </div>
+          </div>
+
+          <!-- Section 1: Label Proyek -->
+          <div class="copy-section">
+            <div class="skill-admin-section-head">
+              <div>
+                <span class="field-caption">01 / Label Bagian Proyek (Dashboard)</span>
+                <h4>Label &amp; Tombol Kartu Proyek</h4>
+              </div>
+              <span class="admin-mini-label">Selaras dengan Dashboard</span>
+            </div>
+            <div class="field-grid">
+              <label>Label Overlay Badge Proyek
+                <input name="projectOverlay" type="text" placeholder="selected work" />
+                <small class="field-help">Teks label di atas gambar proyek (Contoh: "selected work" atau "karya
+                  unggulan").</small>
+              </label>
+              <label>Label Stack Teknologi
+                <input name="projectStack" type="text" placeholder="stack teknologi" />
+                <small class="field-help">Label di atas daftar teknologi proyek.</small>
+              </label>
+              <label>Label Tombol Kunjungi Proyek
+                <input name="projectVisit" type="text" placeholder="kunjungi proyek ↗" />
+                <small class="field-help">Teks tombol untuk proyek yang memiliki tautan URL aktif.</small>
+              </label>
+              <label>Label Teks Studi Kasus
+                <input name="projectCaseStudy" type="text" placeholder="detail studi kasus ↗" />
+                <small class="field-help">Teks badge untuk proyek tanpa link eksternal.</small>
+              </label>
+              <label>Judul Section Proyek di Navigasi
+                <input name="sectionProjects" type="text" placeholder="projects" />
+                <small class="field-help">Nama section yang tampil di nomor section "04 / projects".</small>
+              </label>
+              <label>Kicker / Subjudul Section Proyek
+                <input name="projectsKicker" type="text" placeholder="karya terpilih" />
+                <small class="field-help">Teks kecil di atas judul utama bagian Proyek.</small>
+              </label>
+            </div>
+          </div>
+
+          <!-- Section 2: Label Sertifikat & Skills -->
+          <div class="copy-section">
+            <div class="skill-admin-section-head">
+              <div>
+                <span class="field-caption">02 / Label Sertifikat &amp; Keahlian</span>
+                <h4>Sertifikat &amp; Skills</h4>
+              </div>
+            </div>
+            <div class="field-grid">
+              <label>Judul Section Sertifikat (03)
+                <input name="sectionCertificates" type="text" placeholder="certificates" />
+              </label>
+              <label>Kicker Section Sertifikat
+                <input name="certificatesKicker" type="text" placeholder="bukti kompetensi" />
+              </label>
+              <label>Judul Section Skills (02)
+                <input name="sectionSkills" type="text" placeholder="skills" />
+              </label>
+              <label>Kicker Section Skills
+                <input name="skillsKicker" type="text" placeholder="toolkit & keahlian" />
+              </label>
+            </div>
+          </div>
+
+          <!-- Section 3: Label Navigasi & Halaman -->
+          <div class="copy-section">
+            <div class="skill-admin-section-head">
+              <div>
+                <span class="field-caption">03 / Label Navigasi Header &amp; Kontak</span>
+                <h4>Navigasi &amp; Kontak</h4>
+              </div>
+            </div>
+            <div class="field-grid">
+              <label>Navigasi About<input name="navAbout" type="text" placeholder="About" /></label>
+              <label>Navigasi Skills<input name="navSkills" type="text" placeholder="Skills" /></label>
+              <label>Navigasi Certificates<input name="navCertificates" type="text"
+                  placeholder="Certificates" /></label>
+              <label>Navigasi Projects<input name="navProjects" type="text" placeholder="Projects" /></label>
+              <label>Navigasi Contact<input name="navContact" type="text" placeholder="Contact" /></label>
+              <label>Judul Section About (01)<input name="sectionAbout" type="text" placeholder="about" /></label>
+              <label>Kicker About<input name="aboutKicker" type="text" placeholder="ringkasan profil" /></label>
+              <label>Judul Section Contact (05)<input name="sectionContact" type="text" placeholder="contact" /></label>
+              <label>Kicker Contact<input name="contactKicker" type="text" placeholder="terhubung langsung" /></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================================
+             06 / COPYWRITING
+             ================================================================ -->
+        <div class="editor-panel" data-panel="content">
+          <div class="admin-panel-intro">
+            <span class="panel-number">06</span>
+            <div>
+              <h3>Page Copywriting &amp; Teks Judul</h3>
+              <p>Sesuaikan kalimat pembuka, judul dengan teks gradasi warna, dan paragraf utama pada setiap section.</p>
+            </div>
+          </div>
+
+          <div class="copy-section">
+            <div class="skill-admin-section-head">
+              <div><span class="field-caption">01 / Hero</span>
+                <h4>Hero Section</h4>
+              </div>
+            </div>
+            <div class="field-grid">
+              <label>Eyebrow<input name="heroEyebrow" type="text" /></label>
+              <label>Judul Utama — Awal<input name="heroTitleStart" type="text" /></label>
+              <label>Judul Utama — Highlight (Gradasi)<input name="heroTitleHighlight" type="text" /></label>
+              <label>Judul Utama — Akhir<input name="heroTitleEnd" type="text" /></label>
+              <label>Teks Tombol Project<input name="heroActionProjects" type="text" /></label>
+              <label>Teks Tombol Contact<input name="heroActionContact" type="text" /></label>
+              <label>Label Lokasi<input name="heroBasedIn" type="text" /></label>
+              <label>Label Fokus<input name="heroFocus" type="text" /></label>
+              <label>Nilai Fokus<input name="heroFocusValue" type="text" /></label>
+            </div>
+          </div>
+
+          <div class="copy-section">
+            <div class="skill-admin-section-head">
+              <div><span class="field-caption">02 / About</span>
+                <h4>About Section</h4>
+              </div>
+            </div>
+            <div class="field-grid">
+              <label>Judul Awal<input name="aboutHeadingStart" type="text" /></label>
+              <label>Judul Highlight<input name="aboutHeadingHighlight" type="text" /></label>
+              <label>Awal Paragraf<input name="aboutParagraph1Prefix" type="text" /></label>
+            </div>
+            <label>Paragraf Pertama<textarea name="aboutParagraph1" rows="3"></textarea></label>
+            <label>Paragraf Kedua<textarea name="aboutParagraph2" rows="3"></textarea></label>
+            <label>Teks Link About<input name="aboutLink" type="text" /></label>
+          </div>
+
+          <div class="copy-section">
+            <div class="skill-admin-section-head">
+              <div><span class="field-caption">03 / Sections</span>
+                <h4>Skills, Certificates, Projects</h4>
+              </div>
+            </div>
+            <div class="field-grid">
+              <label>Judul Skills — Awal<input name="skillsHeadingStart" type="text" /></label>
+              <label>Judul Skills — Highlight<input name="skillsHeadingHighlight" type="text" /></label>
+              <label>Judul Certificates — Awal<input name="certificatesHeadingStart" type="text" /></label>
+              <label>Judul Certificates — Highlight<input name="certificatesHeadingHighlight" type="text" /></label>
+              <label>Judul Projects — Awal<input name="projectsHeadingStart" type="text" /></label>
+              <label>Judul Projects — Highlight<input name="projectsHeadingHighlight" type="text" /></label>
+            </div>
+            <label>Intro Skills<textarea name="skillsIntro" rows="3"></textarea></label>
+            <label>Intro Certificates<textarea name="certificatesIntro" rows="3"></textarea></label>
+            <label>Intro Projects<textarea name="projectsIntro" rows="3"></textarea></label>
+          </div>
+
+          <div class="copy-section">
+            <div class="skill-admin-section-head">
+              <div><span class="field-caption">04 / Footer</span>
+                <h4>Footer Copy</h4>
+              </div>
+            </div>
+            <div class="field-grid">
+              <label>Judul Contact — Awal<input name="contactHeadingStart" type="text" /></label>
+              <label>Judul Contact — Highlight<input name="contactHeadingHighlight" type="text" /></label>
+              <label>Teks Footer Kiri<input name="footerBuilt" type="text" /></label>
+              <label>Teks Kembali ke Atas<input name="footerBack" type="text" /></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================================
+             07 / CONTACT
+             ================================================================ -->
+        <div class="editor-panel" data-panel="contact">
+          <div class="admin-panel-intro">
+            <span class="panel-number">07</span>
+            <div>
+              <h3>Kanal Kontak &amp; Pesan</h3>
+              <p>Atur teks status ketersediaan kerja dan pesan sambutan pada section Contact.</p>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <label>Availability Label
+              <input name="availability" type="text" placeholder="Available for Web Dev & Data Roles" />
+            </label>
+            <label>Pesan CTA
+              <input name="contactCta" type="text" placeholder="Terbuka untuk kemungkinan baru." />
+            </label>
+          </div>
+
+          <label>Pesan Ajakan Kontak
+            <textarea name="contactMessage" rows="4"
+              placeholder="Tulis ajakan yang ingin muncul di bagian contact..."></textarea>
+          </label>
+        </div>
+
+        <!-- ================================================================
+             FOOTER ACTIONS
+             ================================================================ -->
+        <div class="editor-foot">
+          <div class="editor-foot-left">
+            <span class="save-hint">
+              Draft tersimpan otomatis di browser ini ·
+              <button type="button" id="resetData">Reset sample data</button>
+            </span>
+            <div class="export-workflow-hint">
+              <span class="export-hint-step">① Save changes</span>
+              <span class="export-hint-arrow">→</span>
+              <span class="export-hint-step">② Export portfolio-data.js</span>
+              <span class="export-hint-arrow">→</span>
+              <span class="export-hint-step">③ Replace file di folder proyek</span>
+              <span class="export-hint-arrow">→</span>
+              <span class="export-hint-step">④ Refresh dashboard</span>
+            </div>
+          </div>
+          <div class="editor-actions">
+            <button class="button button-outline export-btn-styled" type="button" id="exportData">
+              <span class="export-btn-icon">↓</span>
+              <span>Export <code>portfolio-data.js</code></span>
+            </button>
+            <button class="button button-primary" type="submit">
+              Save changes <span>✓</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="portfolio-data.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

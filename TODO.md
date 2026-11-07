@@ -1,0 +1,54 @@
+# TODO — Portofolio Kreatif
+
+- [x] Membuat halaman portofolio publik yang berisi About, Skills, Certificates, Projects, dan Contact dengan tema teknologi untuk mahasiswa IT.
+  - Halaman harus menggunakan HTML, CSS, dan JavaScript saja serta memiliki tampilan responsive.
+  - Navigasi harus mengarah ke lima section utama dan tidak menampilkan nav link atau button yang mengarah ke editor.
+- [x] Menambahkan area foto profil yang personal dan rapi pada halaman publik.
+  - Foto portrait memiliki frame futuristik, placeholder, orbit dekoratif, dan badge identitas.
+- [x] Menambahkan field Profile untuk universitas, IPK/GPA, tanggal lahir, dan domisili.
+  - Semua field dapat diisi dari admin dan tampil di hero/About portfolio publik.
+- [x] Menempatkan biodata di dekat foto dalam bentuk floating info-card, bukan tabel.
+  - Empat card memiliki connector line, glow, staggered entrance, dan floating animation.
+- [x] Menghapus box statistik 12+, 04, dan ∞ dari halaman publik agar About lebih bersih.
+- [x] Mengubah editor menjadi halaman admin penuh, bukan popup.
+  - `/editor.html` memiliki sidebar, workspace, tab Profile/Skills/Certificates/Projects/Contact, dan link kembali ke portfolio.
+- [x] Memisahkan link editor dari link portfolio publik.
+  - Editor dibuka melalui halaman terpisah `/editor.html`, sedangkan halaman portfolio utama aman dibagikan tanpa akses editor yang terlihat.
+- [x] Membuat Skills memiliki CRUD lengkap dengan emoji template.
+  - Skill dapat ditambah, dilihat, diedit, dan dihapus dari panel editor.
+  - Pengguna dapat memilih emoji template untuk ditampilkan di samping nama skill.
+  - Tampilan publik Skills tidak menggunakan persentase.
+- [x] Memperbarui tampilan publik Skills agar lebih animatif dan menarik.
+  - Skill tampil sebagai tech-console cards dua kolom di desktop dan satu kolom di mobile.
+  - Card memiliki glow, scan line, hover lift, emoji interaction, signal pulse, dan staggered entrance tanpa persentase.
+- [x] Merombak Skills menjadi sistem berbasis kategori yang dapat di-CRUD.
+  - Kategori awal mencakup Software Development, Database, dan Data Analysis.
+  - Admin dapat menambah, mengedit, dan menghapus kategori.
+  - Admin dapat menambah, mengedit, dan menghapus skill di dalam kategori serta memilih emoji.
+  - Dashboard publik menampilkan kategori sebagai panel interaktif expand/collapse.
+- [x] Membuat editor ringan yang enak dipakai untuk menginput nama, role, bio, statistik, skill, sertifikat, project, dan contact.
+  - Data disimpan di localStorage agar tetap tersedia saat halaman direfresh pada browser yang sama.
+- [x] Membuat upload sertifikat PDF dengan preview dashboard yang tidak terpotong.
+  - File PDF diterima dari input file dan ditampilkan dengan rasio preview vertikal menggunakan object/embed.
+  - Metadata judul, issuer, tahun, dan tag dapat diisi.
+- [x] Menambahkan detail certificate interaktif.
+  - Setiap kartu certificate dapat ditekan atau dipilih dengan keyboard untuk membuka popup detail.
+  - Admin memiliki field deskripsi certificate yang ditampilkan di popup bersama issuer dan tahun.
+- [x] Membuat project dengan lebih dari satu gambar dan galeri thumbnail.
+  - Upload beberapa gambar sekaligus, render thumbnail, dan sediakan navigasi gambar pada kartu project.
+- [x] Menambahkan animasi reveal, hover, floating background, dan transisi galeri yang selaras dengan tema teknologi.
+- [x] Mengubah Contact menjadi empat card channel terpisah.
+  - Email dengan logo email, Phone dengan logo telepon, Instagram dengan logo Instagram, dan LinkedIn dengan logo LinkedIn.
+  - Card memiliki warna channel, hover lift, glow, animated underline, dan link dinamis.
+  - Nomor telepon dan Instagram dapat diisi dari admin bersama Email dan LinkedIn.
+- [x] Menyiapkan workflow asset yang kompatibel dengan hosting GitHub Pages.
+  - Folder `assets/certificate` disediakan untuk PDF certificate dan folder `assets/projects` untuk gambar project.
+  - Admin menerima path relatif asset, misalnya `assets/certificate/nama.pdf` dan `assets/projects/cover.png`.
+  - Admin dapat mengedit metadata/label certificate dan project yang sudah tersimpan.
+  - Upload lokal tetap tersedia sebagai fallback preview development, tetapi path asset GitHub menjadi sumber utama saat diisi.
+- [x] Merombak desain portofolio menjadi sistem visual bento grid modern yang rapi, elegan, dan terstruktur.
+- [x] Mengatur rasio gambar pada tampilan kartu proyek menjadi standar 16:9 di dashboard dan admin thumbnail.
+- [x] Mengurutkan seluruh sertifikat dan proyek secara kronologis dari tahun terbaru (descending) baik di dashboard publik maupun di admin CRUD list.
+- [x] Menyediakan integrasi field tahun pengerjaan proyek di form editor admin.
+- [x] Menyelaraskan editor admin dengan dashboard: menyediakan tab khusus '05 / Labels & Teks UI', menampilkan badge label peran, tahun, tech stack, dan link status di daftar CRUD admin, menambahkan mode edit banner dengan tombol batal edit, serta melengkapi input link proyek dan highlights.
+- [x] Iterasi konten, branding personal, dan integrasi penyimpanan server setelah review pengguna.
